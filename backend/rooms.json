@@ -1,0 +1,40 @@
+[
+    {
+      "name": "Standard Room",
+      "price": 2000,
+      "capacity": 10,
+      "amenities": [
+        "WiFi",
+        "Aircon",
+        "TV"
+      ],
+      "image": "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop"
+    },
+  
+    {
+      "name": "Deluxe Room",
+      "price": 3500,
+      "capacity": 5,
+      "amenities": [
+        "WiFi",
+        "Aircon",
+        "TV",
+        "Mini Bar"
+      ],
+      "image": "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1200&auto=format&fit=crop"
+    },
+  
+    {
+      "name": "Executive Room",
+      "price": 5000,
+      "capacity": 2,
+      "amenities": [
+        "WiFi",
+        "Aircon",
+        "TV",
+        "Jacuzzi",
+        "Breakfast"
+      ],
+      "image": "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1200&auto=format&fit=crop"
+    }
+  ]

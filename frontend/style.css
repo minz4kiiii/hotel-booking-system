@@ -1,0 +1,1153 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+
+  background:
+    linear-gradient(
+      rgba(0,0,0,0.88),
+      rgba(0,0,0,0.88)
+    ),
+    url("https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop");
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  color: #f5deb3;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* NAVBAR */
+
+nav {
+  background: rgba(0,0,0,0.75);
+
+  backdrop-filter: blur(10px);
+
+  padding: 18px 40px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid #c8a96b;
+
+  position: sticky;
+  top: 0;
+  z-index: 999;
+
+  box-shadow: 0 5px 20px rgba(0,0,0,0.35);
+}
+
+nav h2 {
+  margin: 0;
+
+  color: #d4af37;
+  font-size: 28px;
+
+  letter-spacing: 1px;
+}
+
+nav ul {
+  display: flex;
+  gap: 25px;
+
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: #f5deb3;
+
+  font-weight: 500;
+
+  transition: 0.3s;
+}
+
+nav a:hover {
+  color: #ffd369;
+}
+
+/* HERO */
+
+.hero {
+  height: 90vh;
+
+  background-image:
+    linear-gradient(
+      rgba(0,0,0,0.65),
+      rgba(0,0,0,0.75)
+    ),
+    url("https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1400&auto=format&fit=crop");
+
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  color: white;
+}
+
+.hero-content,
+.overlay {
+  max-width: 750px;
+}
+
+.hero h1 {
+  font-size: 75px;
+
+  line-height: 1.1;
+
+  margin-bottom: 20px;
+
+  color: #d4af37;
+
+  text-shadow:
+    0 5px 15px rgba(0,0,0,0.5);
+}
+
+.hero p {
+  font-size: 20px;
+
+  color: #f3e3b2;
+
+  margin-bottom: 30px;
+}
+
+.hero button {
+  padding: 14px 35px;
+
+  border: none;
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d4af37,
+      #f7d774
+    );
+
+  color: black;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+
+  box-shadow:
+    0 4px 15px rgba(212,175,55,0.25);
+}
+
+.hero button:hover {
+  transform:
+    translateY(-3px)
+    scale(1.03);
+
+  box-shadow:
+    0 8px 20px rgba(212,175,55,0.35);
+}
+
+/* TITLES */
+
+.section-title {
+  text-align: center;
+
+  margin-top: 50px;
+}
+
+.section-title h1 {
+  color: #d4af37;
+
+  font-size: 40px;
+}
+
+.section-title p {
+  color: #f5deb3;
+}
+
+/* SPLIT ROOMS LAYOUT */
+
+.rooms-page {
+  display: flex;
+
+  gap: 70px;
+
+  padding: 80px 70px;
+
+  align-items: flex-start;
+}
+
+.rooms-left {
+  flex: 1;
+
+  position: sticky;
+  top: 120px;
+}
+
+.rooms-left h1 {
+  font-size: 70px;
+
+  line-height: 1;
+
+  margin-bottom: 25px;
+
+  color: #d4af37;
+}
+
+.rooms-left p {
+  font-size: 18px;
+
+  color: #ddd;
+
+  line-height: 1.8;
+
+  max-width: 350px;
+}
+
+/* ROOMS */
+
+.rooms-container {
+  flex: 2;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 35px;
+}
+
+.room-card {
+  width: 320px;
+
+  background:
+    rgba(20,20,20,0.88);
+
+  backdrop-filter: blur(12px);
+
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  border:
+    1px solid rgba(212,175,55,0.25);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.4);
+
+  transition: 0.4s ease;
+}
+
+.room-card:hover {
+  transform:
+    translateY(-12px);
+
+  box-shadow:
+    0 12px 35px rgba(212,175,55,0.25);
+}
+
+.room-card img {
+  width: 100%;
+  height: 240px;
+
+  object-fit: cover;
+
+  transition: 0.4s;
+}
+
+.room-card:hover img {
+  transform: scale(1.05);
+}
+
+.room-info {
+  padding: 25px;
+}
+
+.room-info h2 {
+  color: #d4af37;
+
+  font-size: 30px;
+
+  margin-bottom: 12px;
+}
+
+.room-info p {
+  line-height: 1.7;
+}
+
+.price {
+  color: #ffd369;
+
+  font-size: 28px;
+  font-weight: bold;
+
+  margin-top: 20px;
+}
+
+.amenities {
+  padding-left: 20px;
+
+  color: #f5deb3;
+}
+
+/* BUTTONS */
+
+.book-btn {
+  width: 100%;
+
+  padding: 13px;
+
+  border: none;
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d4af37,
+      #f7d774
+    );
+
+  color: black;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  margin-top: 18px;
+
+  transition: 0.3s ease;
+}
+
+.book-btn:hover {
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 8px 20px rgba(212,175,55,0.35);
+}
+
+/* FORMS */
+
+.form-container {
+  width: 420px;
+
+  margin: 60px auto;
+
+  background:
+    rgba(20,20,20,0.88);
+
+  backdrop-filter: blur(15px);
+
+  padding: 35px;
+
+  border-radius: 25px;
+
+  border: 1px solid rgba(212,175,55,0.3);
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,0.45);
+}
+
+.form-container h2 {
+  text-align: center;
+
+  color: #d4af37;
+
+  font-size: 35px;
+}
+
+.form-container input,
+.form-container select {
+  width: 100%;
+
+  padding: 13px;
+
+  margin-top: 8px;
+  margin-bottom: 20px;
+
+  border:
+    1px solid rgba(212,175,55,0.3);
+
+  border-radius: 10px;
+
+  background: #111;
+
+  color: white;
+
+  box-sizing: border-box;
+
+  transition: 0.3s;
+}
+
+.form-container input:focus,
+.form-container select:focus {
+  outline: none;
+
+  border-color: #d4af37;
+
+  box-shadow:
+    0 0 10px rgba(212,175,55,0.25);
+}
+
+.form-container button {
+  width: 100%;
+
+  padding: 13px;
+
+  border: none;
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d4af37,
+      #f7d774
+    );
+
+  color: black;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.form-container button:hover {
+  transform: translateY(-2px);
+}
+
+/* BOOKINGS */
+
+#myBookings {
+  padding: 40px;
+}
+
+.booking-card {
+  background:
+    rgba(20,20,20,0.88);
+
+  backdrop-filter: blur(10px);
+
+  padding: 20px;
+
+  margin-bottom: 20px;
+
+  border-radius: 20px;
+
+  border:
+    1px solid rgba(212,175,55,0.25);
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,0.35);
+
+  transition: 0.3s;
+}
+
+.booking-card:hover {
+  transform: translateY(-5px);
+}
+
+/* ROOM DETAILS */
+
+.details-container {
+  width: 700px;
+
+  margin: 40px auto;
+
+  background:
+    rgba(20,20,20,0.88);
+
+  backdrop-filter: blur(10px);
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  border:
+    1px solid rgba(212,175,55,0.25);
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,0.4);
+}
+
+.details-container img {
+  width: 100%;
+  height: 350px;
+
+  object-fit: cover;
+}
+
+.details-content {
+  padding: 25px;
+}
+
+.details-content h2 {
+  color: #d4af37;
+}
+
+/* FOOTER */
+
+footer {
+  background:
+    rgba(0,0,0,0.8);
+
+  color: #d4af37;
+
+  text-align: center;
+
+  padding: 20px;
+
+  margin-top: 50px;
+
+  border-top: 1px solid #c8a96b;
+}
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+  .rooms-page {
+    flex-direction: column;
+
+    padding: 40px 25px;
+  }
+
+  .rooms-left {
+    position: static;
+
+    text-align: center;
+  }
+
+  .rooms-left h1 {
+    font-size: 50px;
+  }
+
+  .rooms-left p {
+    max-width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 50px;
+  }
+
+  nav {
+    padding: 15px 20px;
+  }
+
+  nav ul {
+    gap: 15px;
+  }
+
+  .form-container {
+    width: 90%;
+  }
+
+  .details-container {
+    width: 92%;
+  }
+}
+/* =========================
+   PREMIUM NAVBAR DESIGN
+========================= */
+
+nav{
+  background:
+    rgba(8,8,8,0.82);
+
+  backdrop-filter: blur(16px);
+
+  border-bottom:
+    1px solid rgba(212,175,55,0.22);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,0.45);
+}
+
+/* SUITESPOT TITLE */
+
+nav h2{
+
+  position: relative;
+
+  font-size: 34px;
+
+  font-weight: bold;
+
+  letter-spacing: 2px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff6c7,
+      #d4af37,
+      #ffe082
+    );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow:
+    0 3px 12px rgba(212,175,55,0.15);
+}
+
+/* SMALL SUBTITLE */
+
+nav h2::after{
+
+  content: "Luxury Hotel & Suites";
+
+  display: block;
+
+  margin-top: 4px;
+
+  font-size: 10px;
+
+  letter-spacing: 4px;
+
+  color: #d6c08b;
+
+  -webkit-text-fill-color: #d6c08b;
+}
+
+/* NAV LINKS */
+
+nav ul{
+  gap: 35px;
+}
+
+nav a{
+
+  position: relative;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  color: #f5deb3;
+
+  padding-bottom: 5px;
+
+  transition: 0.3s ease;
+}
+
+/* HOVER UNDERLINE EFFECT */
+
+nav a::after{
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 0%;
+  height: 2px;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #d4af37,
+      #fff0b3
+    );
+
+  transition: 0.35s ease;
+}
+
+nav a:hover::after{
+  width: 100%;
+}
+
+nav a:hover{
+  color: #ffd369;
+}
+
+/* ACTIVE GLOW */
+
+nav:hover{
+  box-shadow:
+    0 10px 30px rgba(212,175,55,0.08);
+}
+/* =========================
+   GOOGLE FONT
+========================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body{
+  font-family: 'Poppins', sans-serif;
+}
+
+/* =========================
+   UPDATED PREMIUM NAVBAR
+========================= */
+
+nav{
+  background:
+    rgba(8,8,8,0.82);
+
+  backdrop-filter: blur(16px);
+
+  border-bottom:
+    1px solid rgba(212,175,55,0.22);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,0.45);
+
+  padding: 20px 50px;
+}
+
+/* LEFT SIDE */
+
+nav h2{
+
+  position: relative;
+
+  font-size: 36px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff6c7,
+      #d4af37,
+      #ffe082
+    );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-shadow:
+    0 4px 12px rgba(212,175,55,0.18);
+}
+
+/* SUBTITLE */
+
+nav h2::after{
+
+  content: "Luxury Hotel & Suites";
+
+  display: block;
+
+  margin-top: 3px;
+
+  font-size: 10px;
+
+  letter-spacing: 4px;
+
+  color: #d6c08b;
+
+  -webkit-text-fill-color: #d6c08b;
+}
+
+/* NAV LINKS */
+
+nav ul{
+  gap: 38px;
+}
+
+nav a{
+
+  position: relative;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  color: #f5deb3;
+
+  padding-bottom: 6px;
+
+  transition: 0.3s ease;
+}
+
+/* UNDERLINE EFFECT */
+
+nav a::after{
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 0%;
+  height: 2px;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #d4af37,
+      #fff0b3
+    );
+
+  transition: 0.35s ease;
+}
+
+nav a:hover::after{
+  width: 100%;
+}
+
+nav a:hover{
+  color: #ffd369;
+}
+
+/* =========================
+   ROOMS LEFT PANEL UPGRADE
+========================= */
+
+.rooms-left{
+
+  background:
+    rgba(20,20,20,0.55);
+
+  backdrop-filter: blur(14px);
+
+  padding: 40px;
+
+  border-radius: 30px;
+
+  border:
+    1px solid rgba(212,175,55,0.15);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.35);
+}
+
+.rooms-left h1{
+
+  font-size: 80px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff0b3,
+      #d4af37
+    );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  margin-bottom: 20px;
+}
+
+.rooms-left p{
+
+  color: #e6d8b2;
+
+  font-size: 17px;
+
+  line-height: 1.9;
+}
+
+/* ROOM TYPES */
+
+.rooms-left::before{
+
+  content: "ROOM TYPES";
+
+  display: inline-block;
+
+  margin-bottom: 20px;
+
+  padding: 10px 18px;
+
+  border-radius: 50px;
+
+  background:
+    rgba(212,175,55,0.12);
+
+  color: #ffd369;
+
+  font-size: 12px;
+
+  letter-spacing: 3px;
+
+  font-weight: 600;
+}
+
+/* =========================
+   ROOM CARD EXTRA DESIGN
+========================= */
+
+.room-card{
+
+  position: relative;
+}
+
+.room-card::before{
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: 22px;
+
+  padding: 1px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.1),
+      rgba(212,175,55,0.3)
+    );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite: xor;
+
+  pointer-events: none;
+}
+
+/* ROOM TITLE */
+
+.room-info h2{
+
+  font-size: 28px;
+
+  margin-bottom: 10px;
+}
+
+/* ROOM TEXT */
+
+.room-info p{
+
+  color: #f3e3b2;
+}
+
+/* PRICE */
+
+.price{
+
+  text-shadow:
+    0 0 12px rgba(255,211,105,0.25);
+}
+
+/* =========================
+   BUTTON DESIGN
+========================= */
+
+.book-btn{
+
+  font-family: 'Poppins', sans-serif;
+
+  letter-spacing: 1px;
+
+  font-size: 14px;
+}
+
+.book-btn:hover{
+
+  transform:
+    translateY(-3px)
+    scale(1.02);
+}
+
+/* =========================
+   FORM UPGRADE
+========================= */
+
+.form-container{
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+}
+
+.form-container h2{
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+  nav{
+    padding: 18px 25px;
+  }
+
+  nav h2{
+    font-size: 28px;
+  }
+
+  nav ul{
+    gap: 18px;
+  }
+
+  .rooms-left h1{
+    font-size: 55px;
+  }
+
+}
+/* =========================
+   CENTER ROOMS LAYOUT FIX
+========================= */
+
+.rooms-page{
+  display: block;
+
+  padding: 70px 50px;
+}
+
+/* CENTER TITLE SECTION */
+
+.rooms-left{
+
+  position: static;
+
+  max-width: 900px;
+
+  margin: 0 auto 60px auto;
+
+  text-align: center;
+}
+
+/* REMOVE SIDE WIDTH */
+
+.rooms-left p{
+  max-width: 700px;
+
+  margin: auto;
+}
+
+/* CENTER ROOM CARDS */
+
+.rooms-container{
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  align-items: stretch;
+
+  gap: 35px;
+
+  width: 100%;
+}
+
+/* BETTER CARD SIZE */
+
+.room-card{
+  width: 340px;
+}
+
+/* SECTION TITLE IMPROVE */
+
+.section-title{
+
+  margin-top: 70px;
+
+  margin-bottom: 30px;
+}
+
+.section-title h1{
+
+  font-size: 55px;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff0b3,
+      #d4af37
+    );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-title p{
+
+  font-size: 17px;
+
+  color: #e6d8b2;
+
+  letter-spacing: 1px;
+}
+
+/* ROOM CARD HOVER */
+
+.room-card:hover{
+
+  transform:
+    translateY(-10px)
+    scale(1.02);
+
+  box-shadow:
+    0 18px 40px rgba(212,175,55,0.18);
+}
+
+/* ROOM IMAGE */
+
+.room-card img{
+
+  border-bottom:
+    1px solid rgba(212,175,55,0.18);
+}
+
+/* BUTTON GLOW */
+
+.book-btn{
+
+  box-shadow:
+    0 5px 18px rgba(212,175,55,0.20);
+}
+
+/* MOBILE FIX */
+
+@media(max-width:900px){
+
+  .rooms-page{
+    padding: 40px 20px;
+  }
+
+  .rooms-left{
+    padding: 30px 20px;
+  }
+
+  .section-title h1{
+    font-size: 42px;
+  }
+
+  .room-card{
+    width: 100%;
+    max-width: 350px;
+  }
+
+}.button-group{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+}

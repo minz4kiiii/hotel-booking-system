@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    body{
+      margin:0;
+      padding:0;
+      font-family:Arial, sans-serif;
+      background:
+        linear-gradient(rgba(0,0,0,0.75),
+        rgba(0,0,0,0.75)),
+        url("https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1600&auto=format&fit=crop");
+      background-size:cover;
+      background-position:center;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .signup-box{
+      width:350px;
+      background:#111;
+      padding:40px;
+      border-radius:15px;
+      text-align:center;
+      border:1px solid #d4af37;
+      box-shadow:0 0 20px rgba(212,175,55,0.4);
+    }
+
+    .signup-box h2{
+      color:#d4af37;
+      margin-bottom:25px;
+      font-size:32px;
+    }
+
+    .signup-box input{
+      width:100%;
+      padding:14px;
+      margin-bottom:15px;
+      border:none;
+      border-radius:8px;
+      background:#1f1f1f;
+      color:white;
+      font-size:15px;
+      box-sizing:border-box;
+    }
+
+    .signup-box input:focus{
+      outline:none;
+      border:1px solid #d4af37;
+    }
+
+    .signup-box button{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:8px;
+      background:#d4af37;
+      color:black;
+      font-size:16px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .signup-box button:hover{
+      background:#f5d76e;
+      transform:scale(1.03);
+    }
+
+    .signup-box a{
+      color:#d4af37;
+      text-decoration:none;
+      display:block;
+      margin-top:18px;
+    }
+
+    .signup-box a:hover{
+      text-decoration:underline;
+    }
+
+    #msg{
+      color:white;
+      margin-top:15px;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<div class="signup-box">
+
+  <h2>Create Account</h2>
+
+  <input id="name" placeholder="Name">
+
+  <input id="email" placeholder="Email">
+
+  <input id="password" type="password" placeholder="Password">
+
+  <button onclick="signup()">Sign Up</button>
+
+  <p id="msg"></p>
+
+  <a href="login.html">Already have an account? Login</a>
+
+</div>
+
+<script>
+async function signup() {
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const msg = document.getElementById("msg");
+
+  if (!name || !email || !password) {
+    msg.innerText = "Fill all fields";
+    return;
+  }
+
+  try {
+
+    const res = await fetch("http://localhost:5000/users/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, password })
+    });
+
+    const data = await res.json();
+
+    msg.innerText = data.message;
+
+    if (res.ok) {
+      setTimeout(() => {
+        window.location.href = "login.html";
+      }, 800);
+    }
+
+  } catch (err) {
+    msg.innerText = "Server error";
+  }
+}
+</script>
+
+</body>
+</html>

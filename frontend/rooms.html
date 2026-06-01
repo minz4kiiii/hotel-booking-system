@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rooms - SuiteSpot</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+
+  <h2>SuiteSpot</h2>
+
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="rooms.html">Rooms</a></li>
+    <li><a href="availability.html">Check Availability</a></li>
+    <li><a href="dashboard.html">My Bookings</a></li>
+    <li><a href="login.html">Login</a></li>
+  </ul>
+
+</nav>
+
+<section class="section-title">
+
+  <h1>Our Rooms</h1>
+
+  <p>Experience comfort, elegance, and luxury.</p>
+
+</section>
+
+<!-- DITO LALABAS DATABASE ROOMS -->
+<section
+  class="rooms-container"
+  id="roomsContainer"
+></section>
+
+<script>
+
+async function loadRooms() {
+
+  const container =
+    document.getElementById("roomsContainer");
+
+  try {
+
+    const res =
+      await fetch("http://localhost:5000/rooms");
+
+    const rooms =
+      await res.json();
+
+    container.innerHTML = "";
+
+    rooms.forEach(room => {
+
+      container.innerHTML += `
+
+        <div class="room-card">
+
+          <img src="${room.image}">
+
+          <div class="room-info">
+
+            <h2>${room.name}</h2>
+
+            <p>
+              ✔ Good for ${room.capacity} persons
+            </p>
+
+            <p class="amenities">
+              ${room.amenities.join(", ")}
+            </p>
+
+            <p class="price">
+              ₱${room.price} / night
+            </p>
+
+            <a href="availability.html">
+
+              <button class="book-btn">
+                Book Now
+              </button>
+
+            </a>
+
+          </div>
+
+        </div>
+
+      `;
+
+    });
+
+  } catch (err) {
+
+    console.log(err);
+
+    container.innerHTML =
+      "<p>Failed to load rooms</p>";
+
+  }
+
+}
+
+loadRooms();
+
+</script>
+
+</body>
+</html>

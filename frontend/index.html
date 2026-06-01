@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SuiteSpot</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+
+  <h2>SuiteSpot</h2>
+
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="rooms.html">Rooms</a></li>
+    <li><a href="availability.html">Check Availability</a></li>
+    <li><a href="dashboard.html">My Bookings</a></li>
+    <li id="authButton"></li>
+  </ul>
+
+</nav>
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <h1>Where Every Moments Feels Like Home</h1>
+
+    <p>
+      Luxury rooms, relaxing ambiance, and unforgettable comfort.
+    </p>
+
+    <a href="rooms.html">
+      <button class="hero-btn">
+        Book now
+      </button>
+    </a>
+
+  </div>
+
+</section>
+
+<script>
+
+function updateAuthUI() {
+
+  const user =
+    localStorage.getItem("userEmail");
+
+  const box =
+    document.getElementById("authButton");
+
+  if (user) {
+
+    box.innerHTML = `
+      <a href="#" onclick="logout()">Logout</a>
+    `;
+
+  } else {
+
+    box.innerHTML = `
+      <a href="login.html">Login</a>
+    `;
+
+  }
+
+}
+
+function logout() {
+
+  localStorage.removeItem("userEmail");
+
+  localStorage.removeItem("redirectAfterLogin");
+
+  window.location.href = "index.html";
+
+}
+
+updateAuthUI();
+
+</script>
+
+</body>
+</html>

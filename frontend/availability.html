@@ -1,0 +1,380 @@
+ <!DOCTYPE html>
+<html>
+<head>
+
+  <title>Check Availability - SuiteSpot</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<nav>
+
+  <h2>SuiteSpot</h2>
+
+  <ul>
+
+    <li><a href="index.html">Home</a></li>
+
+    <li><a href="rooms.html">Rooms</a></li>
+
+    <li><a href="availability.html">Check Availability</a></li>
+
+    <li><a href="dashboard.html">My Bookings</a></li>
+
+    <li><a href="login.html">Login</a></li>
+
+  </ul>
+
+</nav>
+
+<br><br>
+
+
+<div class="form-container">
+
+  <h2>Room Reservation</h2>
+
+  <label>Check-in</label>
+
+  <input
+    type="date"
+    id="checkIn"
+  >
+
+  <label>Check-out</label>
+
+  <input
+    type="date"
+    id="checkOut"
+  >
+
+  <label>Adults</label>
+
+  <input
+    type="number"
+    id="adults"
+    min="1"
+  >
+
+  <label>Children</label>
+
+  <input
+    type="number"
+    id="children"
+    min="0"
+  >
+
+  <label>Rooms</label>
+
+  <input
+    type="number"
+    id="rooms"
+    min="1"
+  >
+
+  <label>Room Type</label>
+
+  <select
+    id="room"
+    onchange="showAmenities()"
+  >
+
+    <option value="">
+      -- Select Room --
+    </option>
+
+  </select>
+
+  <p
+    id="amenities"
+    style="
+      color:#d4af37;
+      margin-top:10px;
+      margin-bottom:20px;
+    "
+  ></p>
+
+  <div class="button-group">
+
+    <button onclick="checkAvailability()">
+      Check Availability
+    </button>
+  
+    <button onclick="bookRoom()">
+      Book Now
+    </button>
+  
+  </div>
+
+  <p
+    id="result"
+    style="
+      margin-top:20px;
+      text-align:center;
+      font-size:18px;
+    "
+  ></p>
+
+</div>
+
+<script>
+
+let roomsData = [];
+
+// load roomd from database
+async function loadRooms() {
+
+  try {
+
+    const res =
+      await fetch("http://localhost:5000/rooms");
+
+    roomsData =
+      await res.json();
+
+    const roomSelect =
+      document.getElementById("room");
+
+    roomsData.forEach(room => {
+
+      roomSelect.innerHTML += `
+        <option value="${room.name}">
+          ${room.name}
+        </option>
+      `;
+
+    });
+
+  } catch (err) {
+
+    console.log(err);
+
+  }
+
+}
+
+//show amenities
+function showAmenities() {
+
+  const selectedRoom =
+    document.getElementById("room").value;
+
+  const amenitiesBox =
+    document.getElementById("amenities");
+
+  const room =
+    roomsData.find(r => r.name === selectedRoom);
+
+  if (!room) {
+
+    amenitiesBox.innerHTML = "";
+    return;
+
+  }
+
+  amenitiesBox.innerHTML =
+    "Amenities: " + room.amenities.join(", ");
+
+}
+
+//check availability
+async function checkAvailability() {
+
+  const checkIn =
+    document.getElementById("checkIn").value;
+
+  const checkOut =
+    document.getElementById("checkOut").value;
+
+  const room =
+    document.getElementById("room").value;
+
+  const result =
+    document.getElementById("result");
+
+  if (!checkIn || !checkOut || !room) {
+
+    result.innerHTML =
+      "Please fill required fields";
+
+    return;
+
+  }
+
+  try {
+
+    const bookingRes =
+      await fetch("http://localhost:5000/bookings");
+
+    const bookings =
+      await bookingRes.json();
+
+    const roomData =
+      roomsData.find(r => r.name === room);
+
+    const roomLimit =
+      roomData.capacity;
+
+    const newStart =
+      new Date(checkIn);
+
+    const newEnd =
+      new Date(checkOut);
+
+    const overlapping =
+      bookings.filter(b => {
+
+        if (b.room !== room)
+          return false;
+
+        const start =
+          new Date(b.checkIn);
+
+        const end =
+          new Date(b.checkOut);
+
+        return newStart <= end &&
+               newEnd >= start;
+
+      });
+
+    if (overlapping.length >= roomLimit) {
+
+      result.innerHTML =
+        "❌ Room is FULL for selected dates";
+
+      return;
+
+    }
+
+    result.innerHTML = `
+      <br>
+
+      ✅ Room is AVAILABLE
+
+      <br><br>
+
+      <button
+        class="book-btn"
+        onclick="
+          goToRoom(
+            '${room}',
+            '${checkIn}',
+            '${checkOut}'
+          )
+        "
+      >
+        View Room
+      </button>
+    `;
+
+  } catch (err) {
+
+    console.log(err);
+
+    result.innerHTML =
+      "Server error";
+
+  }
+
+}
+
+// redirect
+
+function goToRoom(room, checkIn, checkOut) {
+
+  const targetURL =
+    `room-details.html?room=${room}&checkIn=${checkIn}&checkOut=${checkOut}`;
+
+  const user =
+    localStorage.getItem("userEmail");
+
+  if (!user) {
+
+    localStorage.setItem(
+      "redirectAfterLogin",
+      targetURL
+    );
+
+    window.location.href =
+      "login.html";
+
+    return;
+
+  }
+
+  window.location.href =
+    targetURL;
+
+}
+function bookRoom() {
+
+const userEmail = localStorage.getItem("userEmail");
+
+const roomName =
+  document.getElementById("room").value;
+
+const checkIn =
+  document.getElementById("checkIn").value;
+
+const checkOut =
+  document.getElementById("checkOut").value;
+
+const result =
+  document.getElementById("result");
+
+if (!roomName || !checkIn || !checkOut) {
+  alert("Complete all fields first");
+  return;
+}
+
+if (!userEmail) {
+  alert("Please login first");
+  window.location.href = "login.html";
+  return;
+}
+
+const roomData =
+  roomsData.find(r => r.name === roomName);
+
+fetch("http://localhost:5000/bookings", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+  userEmail,
+  room: roomName,
+  price: roomData?.price || 0,
+  checkIn,
+  checkOut
+})
+})
+.then(res => res.json())
+.then(data => {
+
+  alert(data.message);
+
+  window.location.href = "dashboard.html";
+
+})
+.catch(err => {
+
+  console.log("ERROR:", err);
+  alert("Booking failed");
+
+});
+
+}
+
+//load database rooms
+
+loadRooms();
+
+</script>
+
+</body>
+</html>

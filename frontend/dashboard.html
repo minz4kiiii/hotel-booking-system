@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Bookings - SuiteSpot</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+
+  <h2>SuiteSpot</h2>
+
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="rooms.html">Rooms</a></li>
+    <li><a href="availability.html">Check Availability</a></li>
+    <li><a href="dashboard.html">My Bookings</a></li>
+    <li><a href="login.html">Login</a></li>
+  </ul>
+
+</nav>
+
+<div class="section-title">
+  <h1>My Bookings</h1>
+  <p id="status"></p>
+</div>
+
+<div id="bookings"></div>
+
+<script src="auth.js"></script>
+
+<script>
+
+const userEmail = getUser();
+const status = document.getElementById("status");
+const container = document.getElementById("bookings");
+
+if (!userEmail) {
+
+  status.innerText =
+    "⚠️ Please login to view your bookings.";
+
+} else {
+
+  loadBookings();
+
+}
+
+async function loadBookings() {
+
+  try {
+
+    const res =
+      await fetch("http://localhost:5000/bookings");
+
+    const bookings =
+      await res.json();
+
+    //fixed filter
+
+    const myBookings =
+      bookings.filter(b => b.userEmail === userEmail);
+
+    if (myBookings.length === 0) {
+
+      status.innerText =
+        "No bookings yet.";
+
+      container.innerHTML = "";
+
+      return;
+
+    }
+
+    status.innerText =
+      "Logged in as: " + userEmail;
+
+    //fixed display
+
+    container.innerHTML = myBookings.map(b => `
+
+      <div class="booking-card">
+
+        <h2 style="color:#d4af37;">
+          ${b.roomName || "Unknown Room"}
+        </h2>
+
+        <p><b>Check-in:</b> ${b.checkIn}</p>
+
+        <p><b>Check-out:</b> ${b.checkOut}</p>
+
+        <p><b>Price:</b> ₱${b.price || 0}</p>
+
+      </div>
+
+    `).join("");
+
+  } catch (err) {
+
+    console.log(err);
+
+    status.innerText =
+      "Server error while loading bookings";
+
+  }
+
+}
+
+</script>
+
+</body>
+</html>
